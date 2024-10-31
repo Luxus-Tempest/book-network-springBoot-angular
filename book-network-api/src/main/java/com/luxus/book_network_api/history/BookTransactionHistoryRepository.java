@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface BookTransactionHistoryRepository extends JpaRepository<BookTransactionHistory, Integer> {
 
     @Query("""
-            SELECT h FROM BookTransactionHistory h
-            WHERE h.book IN :books
-            AND h.user.id = :userId
+            SELECT history
+            FROM BookTransactionHistory history
+            WHERE  history.user.id = :userId
             """)
     Page<BookTransactionHistory> findAllBorrowedBooks(Pageable pageable, Integer userId);
 

@@ -246,7 +246,7 @@ export class BookService extends BaseService {
   }
 
   /** Path part for operation `findBookById()` */
-  static readonly FindBookByIdPath = '/books/{id}';
+  static readonly FindBookByIdPath = '/books/{bookId}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -254,7 +254,7 @@ export class BookService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findBookById$Response(params?: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
+  findBookById$Response(params: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
     return findBookById(this.http, this.rootUrl, params, context);
   }
 
@@ -264,7 +264,7 @@ export class BookService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findBookById(params?: FindBookById$Params, context?: HttpContext): Observable<BookResponse> {
+  findBookById(params: FindBookById$Params, context?: HttpContext): Observable<BookResponse> {
     return this.findBookById$Response(params, context).pipe(
       map((r: StrictHttpResponse<BookResponse>): BookResponse => r.body)
     );

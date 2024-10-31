@@ -2,6 +2,9 @@ package com.luxus.book_network_api;
 
 import com.luxus.book_network_api.role.Role;
 import com.luxus.book_network_api.role.RoleRepository;
+import com.zaxxer.hikari.HikariDataSource;
+import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +28,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class BookNetworkApiApplication {
 
+	@Autowired
+	private HikariDataSource dataSource;  // Injection de HikariDataSource
+
 	public static void main(String[] args) {
 		SpringApplication.run(BookNetworkApiApplication.class, args);
 	}
@@ -36,6 +42,13 @@ public class BookNetworkApiApplication {
 				roleRepository.save(Role.builder().name("USER").build());
 			}
 		};
+	}
+
+	@PreDestroy  // Annotation pour indiquer que cette méthode doit être exécutée à l'arrêt de l'application
+	public void cleanup() {
+		if (dataSource != null) {
+			dataSource.close();  // Fermez le pool de connexions HikariCP
+		}
 	}
 
 }

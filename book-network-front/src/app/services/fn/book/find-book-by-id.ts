@@ -11,11 +11,13 @@ import { RequestBuilder } from '../../request-builder';
 import { BookResponse } from '../../models/book-response';
 
 export interface FindBookById$Params {
+  bookId: number;
 }
 
-export function findBookById(http: HttpClient, rootUrl: string, params?: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
+export function findBookById(http: HttpClient, rootUrl: string, params: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
   const rb = new RequestBuilder(rootUrl, findBookById.PATH, 'get');
   if (params) {
+    rb.path('bookId', params.bookId, {});
   }
 
   return http.request(
@@ -28,4 +30,4 @@ export function findBookById(http: HttpClient, rootUrl: string, params?: FindBoo
   );
 }
 
-findBookById.PATH = '/books/{id}';
+findBookById.PATH = '/books/{bookId}';

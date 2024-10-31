@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.luxus</groupId>
 	<artifactId>book-network-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>book-network-api</name>
 	<description> Spring Boot project for book social network</description>
 	<url/>
@@ -114,6 +114,11 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.16.2</version> <!-- ou la dernière version stable -->
 			</plugin>
 		</plugins>
 	</build>

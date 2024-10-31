@@ -21,6 +21,24 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+  bsn-api:
+    container_name: bsn-api
+    image: bsn/bsn:0.0.5-SNAPSHOT
+    ports:
+      - 8088:8088
+    networks:
+        - spring-demo
+    depends_on:
+        - postgres
+  bsn-front:
+    container_name: bsn-front
+    image: bsn/bsn-front:1.0.0
+    ports:
+      - 8080:80
+    networks:
+        - spring-demo
+    depends_on:
+        - bsn-api
 
 
 networks:

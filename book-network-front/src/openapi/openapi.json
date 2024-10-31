@@ -453,13 +453,23 @@
         }
       }
     },
-    "/books/{id}": {
+    "/books/{bookId}": {
       "get": {
         "tags": [
           "Book"
         ],
         "operationId": "findBookById",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
