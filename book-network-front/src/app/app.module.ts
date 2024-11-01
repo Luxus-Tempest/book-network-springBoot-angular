@@ -17,6 +17,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
 import {CodeInputModule} from "angular-code-input";
 import {HttpTokenInterceptor} from "./services/interceptor/http-token.interceptor";
+import {ApiModule} from "./services/api.module";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpTokenInterceptor} from "./services/interceptor/http-token.intercepto
     FormsModule,
     NgForOf,
     NgIf,
-    CodeInputModule
+    CodeInputModule,
+    ApiModule.forRoot({rootUrl: 'http://VPS_ADRESS:8088/api/v1'}),
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

@@ -17,12 +17,13 @@ spring:
   mail:
     #host: localhost # Sans Docker
     #port: 1025 # Sans Docker
-    host: smtp.gmail.com # Gmail
+    #host: smtp.gmail.com # Gmail
+    host: ${EMAIL_HOSTNAME}
     port: 465 # Gmail port
     #username: username#
     #password: password
-    username: bahibtipe@gmail.com
-    password: cjdh cgzz ujsd ckkz
+    username: ${EMAIL_USER_NAME}
+    password: ${EMAIL_PASSWORD}
 
     properties:
       mail:
@@ -43,6 +44,8 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
+  cors:
+    origins: http://localhost:4200,http://localhost:8080
   file:
     upload:
       photos-output-path: ./uploads/

@@ -41,6 +41,10 @@ ENV JAR_VERSION=${APP_VERSION}
 # Remplacer localhost par le nom du conteneur docker definir docker-compose.yml
 ENV DB_URL=jdbc:postgresql://postgres-sql-bns:5432/book_social_network
 
+ENV EMAIL_HOSTNAME=missing_hostname
+ENV EMAIL_USER_NAME=missing_user_name
+ENV EMAIL_PASSWORD=missing_password
+
 # Commande pour lancer l'application
 
 CMD java -jar -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL}  book-network-api-${JAR_VERSION}.jar
