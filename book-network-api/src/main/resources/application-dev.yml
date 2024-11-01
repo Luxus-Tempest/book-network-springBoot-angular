@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book_social_network
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    #host: localhost # Sans Docker
+    #port: 1025 # Sans Docker
+    #host: smtp.gmail.com # Gmail
+    host: ${EMAIL_HOSTNAME}
+    port: 465 # Gmail port
+    #username: username#
+    #password: password
+    username: ${EMAIL_USER_NAME}
+    password: ${EMAIL_PASSWORD}
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+            trust: "*"
+        starttls:
+          enable: true
+    protocol: smtp
+
+application:
+  security:
+    jwt:
+      secret-key: 45F565FZ4564658V515DV48Z646ZED51C56QS4684EFA545DA5ZD65A1D531
+      expiration: 8640000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+  cors:
+    origins: http://localhost:4200,http://localhost:8080
+  file:
+    upload:
+      photos-output-path: ./uploads/
+server:
+  port: 8088
